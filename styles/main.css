@@ -1,0 +1,566 @@
+/* Importing Montserrat font with multiple weights */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap');
+
+/* Setting up variables, took it straight from trent's website, inspect elment and you can find all the colours */
+:root {
+	/* Serif backup so it feels like reading a book */
+	font-family: 'Montserrat', serif;
+	--theme-primary: #154734;
+	--theme-secondary: #5b7f95;
+	--trent-green: #154734;
+	--trent-dark-green: #0e2f23;
+	--trent-dark-blue: #51788c;
+	--trent-blue: #5b7f95;
+	--trent-a11y-dark-green: #040c09;
+	--trent-a11y-orange: #ad4e2c;
+	--trent-a11y-blue: #57798e;
+	--trent-teal: #115e67;
+	--trent-gold: #c0b561;
+	--trent-orange: #b65735;
+	--trent-orange-dark: #8a4228;
+	--trent-lime: #a9c47f;
+	--trent-red: #991c1f;
+	--trent-grey: #6f767b;
+	--white: #fff;
+	--black: #000;
+	--border-radius: 8px;
+}
+
+/* Setting all the general styles, consistent throughout document
+ * Main body is a flexbox and fills screen
+ */
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+h1,
+h2 {
+	font-weight: 900;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+/*
+ * Header is a flexbox, with the title and nav bar in the middle
+ */
+header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--trent-green);
+	color: whitesmoke;
+}
+
+/* 
+ * .title is a flexbox, with the image and text
+ */
+.title {
+	display: flex;
+	align-items: center;
+}
+
+.title img {
+	margin-right: 1rem;
+}
+
+header h1 {
+	font-size: 3rem;
+	letter-spacing: 0.2rem;
+}
+
+header a {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+header a:visited {
+	color: whitesmoke;
+}
+
+/*
+ * Nav bar is a flexbox, with all the links
+ */
+nav ul {
+	font-weight: 500;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+/* 
+ * Main is a flexbox, with the main content in the middle
+ */
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/*
+ * Footer, flexbox and aligning items to center
+ */
+footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	flex-grow: 1;
+	order: 1;
+	font-weight: 800;
+}
+
+.inspiration {
+	font-weight: 400;
+}
+
+/*
+ * Setting up the section flexbox and styles
+ */
+
+section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* negative margin to make it look like the avatar is resting on the login box, fun stuff */
+.torsoReading {
+	margin-bottom: -1rem;
+}
+
+/* 
+ * Setting up section margins
+ */
+section>h2,
+section>div,
+section>form {
+	margin: 0.5rem 0;
+}
+
+/*
+ * Setting up the form styles for various forms
+ */
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+form label {
+	font-weight: 600;
+	margin: 0 0.5rem;
+}
+
+/* Form that goes above main catalogue and search results in search page */
+.formFilter {
+	flex-direction: row;
+	width: fit-content;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* search page form */
+#search_form {
+	padding: 0.5rem;
+}
+
+/* form that has anything to do with user's account (login/register/forgot password) */
+.accountForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+	min-width: 300px;
+}
+
+.accountForm div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.accountForm label {
+	align-self: flex-start;
+	margin: 0;
+	margin-bottom: 0.5rem;
+}
+
+.accountForm input {
+	width: 100%;
+}
+
+.accountForm,
+#addBookForm {
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	margin: 0 2rem 2rem 2rem;
+}
+
+/* Remember me section, had to add important because
+ * flex-direction: column from .accountForm div
+ * selector would override it even with this class
+ * selector
+ */
+.rememberMe {
+	flex-direction: row !important;
+}
+
+.rememberMe input,
+.rememberMe label {
+	width: max-content;
+	margin: 0;
+	padding: 0.5rem;
+}
+
+/* Buttons in login form */
+.loginButtons {
+	flex-direction: row !important;
+	justify-content: space-around;
+	align-items: center;
+}
+
+
+form div {
+	padding: 0.5rem;
+}
+
+select {
+	padding: 0.5rem;
+	border-radius: var(--border-radius);
+	background-color: var(--trent-a11y-orange);
+	color: white;
+	border: none;
+}
+
+input,
+textarea {
+	padding: 0.5rem;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--black);
+	font-weight: 600;
+}
+
+/* change color of text outline when selected to
+ * match website colours
+ */
+input:focus {
+	outline: 0.1rem solid var(--trent-orange);
+}
+
+/*
+ * Setting up the main catalogue styles
+ */
+.catalogue {
+	display: flex;
+	max-width: 960px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/* 
+ * Each book is in a div with class book
+ */
+.book {
+	width: 240px;
+	height: 360px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	padding: 1rem;
+	background-color: white;
+	margin: 0.5rem;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.book p:nth-of-type(1) {
+	font-weight: 900;
+}
+
+.book p:nth-of-type(2) {
+	font-weight: 500;
+}
+
+.book img {
+	object-fit: cover;
+	object-position: top;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 
+ * Container that holds the three book buttons edit/delete/details
+ */
+.bookOptions {
+	font-size: 0.8rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-self: flex-end;
+}
+
+/*
+ * Setting up the button style
+ * One main button style for all buttons for consistency
+ */
+
+.button {
+	font-size: 0.8rem;
+	font-weight: 600;
+	background-color: var(--trent-orange);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0.4rem;
+	margin: 0.4rem;
+	color: white;
+	text-decoration: none;
+	border: none;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.addBookButton .button {
+	padding: 0.8rem;
+	background-color: var(--trent-dark-blue);
+}
+
+.addBookButton .button:hover {
+	background-color: var(--trent-teal);
+}
+
+.addBookButton img {
+	stroke: white;
+}
+
+.button:hover {
+	background-color: var(--trent-teal);
+}
+
+.button .icon {
+	margin-right: 0.3rem;
+}
+
+nav .button {
+	font-size: 1rem;
+	padding: 0.8rem;
+}
+
+form .button {
+	font-size: 1rem;
+}
+
+form .button,
+form select {
+	background-color: var(--trent-dark-blue);
+}
+
+form .button:hover,
+form select:focus {
+	background-color: var(--trent-teal);
+}
+
+.icon {
+	width: 1rem;
+	height: 1rem;
+}
+
+/*
+ * A little button animation for when they're pressed
+ * Purely to show that I can do this, doesn't work with design.
+ */
+.button:active {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) inset;
+	transform: translateY(2px);
+}
+
+/*
+ * Styles for add a book page, which is a grid
+ */
+#addBookForm {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr max-content;
+
+}
+
+#addBookForm div div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+#addBookForm input,
+textarea,
+select {
+	max-width: 80%;
+}
+
+#addBookForm label {
+	margin: 0.5rem 0;
+}
+
+/* 
+ * Styles for the two columns in addbook grid
+ */
+.bookDetailInput,
+.bookFileInput {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.submitBook {
+	grid-column: span 2;
+	justify-self: center;
+}
+
+.coverPlaceholder {
+	width: 50%;
+	max-width: 300px;
+	height: 100%;
+	background-color: #f5f5f5;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	align-self: center;
+	margin: 1rem;
+}
+
+.description {
+	display: flex;
+	flex-direction: column;
+}
+
+/*
+ * Styles for the book details page, which is also a grid
+ */
+.bookDetails {
+	display: grid;
+	grid-template-rows: 5rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem max-content;
+	grid-template-columns: 1fr 1fr;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	margin: 2rem 2rem 2rem 2rem;
+	padding: 2rem;
+	max-width: 960px;
+}
+
+.bookDetails div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.bookDetails p {
+	margin: 1rem;
+}
+
+.bookTitle {
+	grid-column: span 2;
+	display: flex;
+	justify-content: center;
+}
+
+.bookCover {
+	grid-row: 2 / span 7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+.bookCover img {
+	max-width: 80%;
+	max-height: 80%;
+	object-fit: cover;
+	object-position: top;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.bookDescription {
+	display: flex;
+	grid-row: 9;
+	grid-column: span 2;
+}
+
+/*
+ * hidden style for error messages
+ */
+.hidden {
+	display: none;
+}
+
+/*
+ * Style for danger buttons
+ */
+.danger {
+	background-color: var(--trent-red);
+	color: var(--white);
+	padding: 1rem;
+	border-radius: var(--border-radius);
+}
+
+.danger a {
+	color: var(--trent-gold);
+}
+
+.danger a:hover {
+	text-decoration: none;
+}
+
+/*
+ * Media Queries to adjust the grids into a vertical format so it's not squished
+ */
+@media (max-width: 881px) {
+	#addBookForm {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr max-content;
+	}
+
+	.bookFileInput {
+		grid-row: 1;
+	}
+
+	.bookDetailInput {
+		grid-row: 2;
+	}
+
+	.bookDetails {
+		grid-template-rows: 5rem 21rem 3rem 3rem 3rem 3rem 3rem 3rem max-content;
+		grid-template-columns: 1fr;
+	}
+
+	.bookTitle {
+		grid-column: span 1;
+	}
+
+	.bookCover {
+		grid-row: 2;
+		grid-column: span 1;
+	}
+
+	.bookDescription {
+		grid-row: 10;
+		grid-column: span 1;
+	}
+
+	.bookDetails div {
+		display: flex;
+		justify-content: center;
+	}
+}
