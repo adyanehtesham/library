@@ -6,14 +6,12 @@ include 'includes/library.php';
 $pdo = connectDB(); //connect to database
 
 $current = null;
+$book_id = $_GET['id'] ?? $_POST['book_id'];
 
-if ($_GET) {
-    $query = "SELECT * from library_books where book_id=?";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute([$_GET['id']]);
-    $current = $stmt->fetch();
-}
-
+$query = "SELECT * from library_books where book_id=?";
+$stmt = $pdo->prepare($query);
+$stmt->execute([$book_id]);
+$current = $stmt->fetch();
 
 $id = $_SESSION['id'] ?? null;
 $title = $_POST['title'] ?? $current['title'];
@@ -26,6 +24,7 @@ $book_format = $_POST['book_format'] ?? $current['book_format'];
 $book_file = $_FILES['book_file']['name'] ?? $current['book_file'];
 $description = $_POST['description'] ?? $current['description'];
 $cover_image = $_FILES['cover_image']['name'] ?? $current['book_cover'];
+
 $errors = array();
 
 
@@ -138,22 +137,26 @@ if (isset($_POST['submit'])) {
         $errors['pub_date'] = true;
     }
 
-    // query to check if isbn already exists for current user
-    $query = "SELECT * FROM `library_books` WHERE `isbn` = ? AND `id` = ?";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute([$isbn, $id]);
-    $book = $stmt->fetch();
-    if ($book) {
-        $errors['isbn_exists'] = true;
+    if ($isbn != $current['isbn']) {
+
+        // query to check if isbn already exists for current user
+        $query = "SELECT * FROM `library_books` WHERE `isbn` = ? AND `id` = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$isbn, $id]);
+        $book = $stmt->fetch();
+        if ($book) {
+            $errors['isbn_exists'] = true;
+        }
     }
     if (!isset($isbn) || strlen($isbn) != 13 || !is_numeric($isbn)) {
         $errors['isbn'] = true;
     }
-    if (empty($cover_image)) {
-        $errors['file'] = true;
-    }
+    // image editing does not work, no time
+    // if (empty($cover_image)) {
+    //     $errors['file'] = true;
+    // }
 
-
+    var_dump($errors);
     if (count($errors) === 0) {
         // upload files
         $cover_image = upload_file('cover_image', $isbn, $errors);
@@ -170,9 +173,9 @@ if (isset($_POST['submit'])) {
         // insert book into database
         $query = "UPDATE `library_books` SET `title` = ?, `author` = ?, `rating` = ?, `genre` = ?, `pub_date` = ?, `isbn` = ?, `book_format` = ?, `book_file` = ?, `description` = ?, `book_cover` = ? WHERE `library_books`.`book_id` = ?";
         $stmt = $pdo->prepare($query);
-        $stmt->execute([$title, $author, $rating, $genre, $pub_date, $isbn, $book_format, $book_file, $description, $cover_image, $_GET['id']]);
+        $stmt->execute([$title, $author, $rating, $genre, $pub_date, $isbn, $book_format, $book_file ?? $current['book_file'], $description, $cover_image ?? $current['book_cover'], $book_id]);
 
-        header('Location: index.php?id=' . $_GET['id']);
+        header('Location: index.php?id=' . $book_id);
         exit();
 
     }
@@ -209,6 +212,7 @@ if (isset($_POST['submit'])) {
             <!-- The form, a longer one but pretty self explanatory -->
             <form enctype="multipart/form-data" id="addBookForm" name="addBook"
                 action="<?= htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
+                <input type="hidden" name="book_id" id="book_id" value=<?= $book_id ?> />
                 <div class="bookFileInput">
                     <!-- Realized this is better left for javascript with an event listener -->
                     <div class="coverPlaceholder">
