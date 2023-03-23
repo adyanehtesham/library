@@ -206,15 +206,15 @@ if (isset($_POST['submit'])) {
                 <div class="bookDetailInput">
                     <div>
                         <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" placeholder="Title" required />
+                        <input type="text" name="title" id="title" placeholder="Title" required value=<?= $title ?> />
                     </div>
                     <div>
                         <label for="Author">Author:</label>
-                        <input type="text" name="author" id="author" placeholder="John Doe" required />
+                        <input type="text" name="author" id="author" placeholder="John Doe" required value=<?= $author ?> />
                     </div>
                     <div>
                         <label for="rating">Rating:</label>
-                        <input type="range" name="rating" id="rating" min="0" max="5" />
+                        <input type="range" name="rating" id="rating" min="0" max="5" value=<?= $rating ?> />
                     </div>
                     <div>
                         <label for="genre">Genre:</label>
@@ -226,18 +226,18 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div>
                         <label for="pub_date">Publication Date:</label>
-                        <input type="date" name="pub_date" id="pub_date" required />
+                        <input type="date" name="pub_date" id="pub_date" required value=<?= $pub_date ?> />
                     </div>
                     <div>
                         <label for="ISBN">ISBN:</label>
-                        <input type="text" name="isbn" id="isbn" required />
+                        <input type="text" name="isbn" id="isbn" required value=<?= $isbn ?> />
                     </div>
                     <span class="<?= !isset($errors['isbn']) ? 'hidden' : ""; ?>">* ISBN not entered correctly</span>
                     <span class="<?= !isset($errors['isbn_exists']) ? 'hidden' : ""; ?>">* The book is already in your
                         account</span>
                     <div class="description">
                         <label for="description">Description:</label>
-                        <textarea name="description" id="description" rows="10" cols="50"></textarea>
+                        <textarea name="description" id="description" rows="10" cols="50"><?= $description ?></textarea>
                     </div>
                 </div>
                 <div class="submitBook">
@@ -249,7 +249,7 @@ if (isset($_POST['submit'])) {
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 
 </body>
 

@@ -102,17 +102,17 @@ if (isset($_POST['submit'])) {
                 action="<?= htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
                 <div>
                     <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" placeholder="Username" required />
+                    <input type="text" name="username" id="username" placeholder="Username" required value=<?= $username ?> />
                 </div>
                 <span class="<?= !isset($errors['user']) ? 'hidden' : ""; ?>">*That user already exists</span>
                 <div>
                     <label for="name">Name:</label>
-                    <input type="text" name="name" id="name" placeholder="John Doe" required />
+                    <input type="text" name="name" id="name" placeholder="John Doe" required value=<?= $name ?> />
                 </div>
                 <span class="<?= !isset($errors['name']) ? 'hidden' : ""; ?>">*No name entered</span>
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" placeholder="johndoe@trentu.ca" />
+                    <input type="email" name="email" id="email" placeholder="johndoe@trentu.ca" value=<?= $email ?> />
                 </div>
                 <span class="<?= !isset($errors['email']) ? 'hidden' : ""; ?>">*Enter an email</span>
                 <div>
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 
 </body>
 

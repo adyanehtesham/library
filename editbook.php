@@ -5,14 +5,18 @@ session_start();
 include 'includes/library.php';
 $pdo = connectDB(); //connect to database
 
+// set variables
 $current = null;
 $book_id = $_GET['id'] ?? $_POST['book_id'];
 
+
+// fetch book details
 $query = "SELECT * from library_books where book_id=?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$book_id]);
 $current = $stmt->fetch();
 
+// set variables
 $id = $_SESSION['id'] ?? null;
 $title = $_POST['title'] ?? $current['title'];
 $author = $_POST['author'] ?? $current['author'];
@@ -175,9 +179,6 @@ if (isset($_POST['submit'])) {
         $stmt = $pdo->prepare($query);
         $stmt->execute([$title, $author, $rating, $genre, $pub_date, $isbn, $book_format, $book_file ?? $current['book_file'], $description, $cover_image ?? $current['book_cover'], $book_id]);
 
-        header('Location: index.php?id=' . $book_id);
-        exit();
-
     }
 
 
@@ -278,7 +279,7 @@ if (isset($_POST['submit'])) {
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 
 </body>
 

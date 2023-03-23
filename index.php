@@ -67,7 +67,7 @@ $books = $stmt->fetchAll();
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 </body>
 
 </html>

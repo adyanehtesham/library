@@ -1,8 +1,5 @@
 <?php
 
-// $query = "UPDATE `library_users` SET `$field` = ? WHERE `library_users`.`id` = ? ";
-// $realquery = "UPDATE `library_users` SET `username` = ?, `name` = ?, `email` = ? WHERE `library_users`.`id` = ?";
-
 
 session_start();
 $username = $_SESSION['username'];
@@ -15,12 +12,13 @@ $stmt = $pdo->prepare($query);
 $stmt->execute([$username]);
 $result = $stmt->fetch();
 
+// set variables
 $username = $_POST['username'] ?? $result['username'];
 $password = $_POST['password'] ?? null;
 $name = $_POST['name'] ?? $result['name'];
 $email = $_POST['email'] ?? $result['email'];
 
-
+// set errors
 $errors = [];
 
 // function to check if username exists
@@ -37,6 +35,7 @@ function username_exists($pdo, $username)
     }
 }
 
+// function to update account details
 function update_account($pdo, $field, $value)
 {
     $query = "UPDATE `library_users` SET `$field` = ? WHERE `library_users`.`id` = ? ";
@@ -153,7 +152,7 @@ if (isset($_POST['submit'])) {
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 
 </body>
 

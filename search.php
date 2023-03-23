@@ -8,12 +8,14 @@ include 'includes/library.php';
 
 $pdo = connectDB();
 
+// get all books
 $stmt = $pdo->prepare("SELECT * FROM `library_books` WHERE `id` = ?");
 $stmt->execute([$_SESSION['id']]);
 $books = $stmt->fetchAll();
 
 if (isset($_POST['submit'])) {
 
+    // search for books
 
     $query = "SELECT * from library_books where title like ? and id = ?";
     $stmt = $pdo->prepare($query);
@@ -83,7 +85,7 @@ if (isset($_POST['submit'])) {
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 
 </body>
 

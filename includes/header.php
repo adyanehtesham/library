@@ -7,13 +7,16 @@
 	<nav>
 		<ul>
 			<?php
+			// Start the session if it hasn't already been started
 			if (!isset($_SESSION)) {
 				session_start();
 			}
 			$logged_in = false;
+			// Check if the user is logged in
 			if (isset($_SESSION['username'])) {
 				$logged_in = true;
 			}
+			// If the user is logged in, show the home, search, settings, and logout links
 			if ($logged_in) { ?>
 				<li class="button">
 					<img class="icon" src="./images/icons/home.svg" alt="" /><a href="./index.php">Home</a>
@@ -28,7 +31,7 @@
 					<a href="./logout.php">Logout</a>
 				</li>
 			<?php }
-
+			// If the user is not logged in, show the login and register links
 			if (!$logged_in) { ?>
 
 				<li class="button">

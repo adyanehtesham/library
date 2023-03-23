@@ -4,11 +4,13 @@ $username = $_POST['username'] ?? null;
 $password = $_POST['password'] ?? null;
 $errors = [];
 
+// Check if the form has been submitted
 if (isset($_POST['submit'])) {
     include 'includes/library.php';
 
     $pdo = connectDB();
 
+    // fetch account details
     $query = "SELECT * from library_users where username=?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$username]);
@@ -17,6 +19,7 @@ if (isset($_POST['submit'])) {
     if (!$result) {
         $errors['user'] = true;
     } else {
+        // login the user
         if (password_verify($password, $result['password'])) {
             session_start();
             $_SESSION['username'] = $username;
@@ -47,7 +50,9 @@ if (isset($_POST['submit'])) {
 
 <body>
     <!-- Header consists of website title and logo and a navbar with links to various pages -->
-    <?php include "includes/header.php" ?>
+    <?php
+    $is_login = true;
+    include "includes/header.php" ?>
 
     <!-- Main section of the page that has the form for login-->
     <main>
@@ -64,7 +69,7 @@ if (isset($_POST['submit'])) {
                         value="<?= $username; ?>" />
                 </div>
                 <div>
-                    <label for=" password">Password:</label>
+                    <label for="password">Password:</label>
                     <input type="password" name="password" id="password" placeholder="Password" required />
                 </div>
                 <div>
@@ -89,7 +94,7 @@ if (isset($_POST['submit'])) {
         </section>
     </main>
     <!-- Footer has my name and where I got the design inspiration from -->
-    <? include "includes/footer.php" ?>
+    <?php include "includes/footer.php" ?>
 
 </body>
 
