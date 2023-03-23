@@ -50,14 +50,6 @@ if (isset($_POST['submit'])) {
         $errors['user'] = true;
     }
 
-    // if (!isset($name) || strlen($name) === 0) {
-    //     $errors['name'] = true;
-    // }
-
-    // if (!isset($email) || strlen($email) === 0) {
-    //     $errors['email'] = true;
-    // }
-
     $passwordErr = "Your Password Must Contain At Least 8 Characters, 1 Number, 1 Capital Letter, 1 Lowercase Letter!";
 
     if (!empty($_POST["password"]) && ($_POST["password"] == $_POST["VerifyPassword"])) {
