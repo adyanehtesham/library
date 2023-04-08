@@ -1,20 +1,18 @@
-"use strict";
+// javascript for the reveal password toggle
 
-// This block will run when the DOM is loaded (once elements exist), it's really only necessary as a IE 9 fallback for lack of support for defer
-document.addEventListener("DOMContentLoaded", () => {
+// get the password input and the reveal button
+const passwordInput = document.getElementById("password");
+const revealButton = document.getElementById("reveal");
 
-    const passwordInput = document.getElementById("password");
-    const revealButton = document.getElementById("reveal");
-
-    revealButton.addEventListener("click", () => {
-        if (passwordInput.type === "text") {
-            passwordInput.type = "password";
-            passwordInput.nextElementSibling.innerHTML = "Show";
-        } else {
-            passwordInput.type = "text";
-            passwordInput.nextElementSibling.innerHTML = "Hide";
-        }
-    })
-
-    
+// add an event listener to the reveal button
+revealButton.addEventListener("click", () => {
+    // if the password input is of type text, change it to password and change the text of the button to "show"
+    if (passwordInput.type === "text") {
+        passwordInput.type = "password";
+        passwordInput.nextElementSibling.innerHTML = "Show";
+    } else {
+        // if the password input is of type password, change it to text and change the text of the button to "hide"
+        passwordInput.type = "text";
+        passwordInput.nextElementSibling.innerHTML = "Hide";
+    }
 })

@@ -25,49 +25,11 @@ if (isset($_POST['submit'])) {
     include 'includes/library.php';
 
     $pdo = connectDB();
-
-    // if (!isset($username) || strlen($username) === 0 || username_exists($pdo, $username)) {
-    //     $errors['user'] = true;
-    // }
-
-    // if (!isset($name) || strlen($name) === 0) {
-    //     $errors['name'] = true;
-    // }
-
-    // if (!isset($email) || strlen($email) === 0) {
-    //     $errors['email'] = true;
-    // }
-
-    // $passwordErr = "Your Password Must Contain At Least 8 Characters, 1 Number, 1 Capital Letter, 1 Lowercase Letter!";
-
-    // if (!empty($_POST["password"]) && ($_POST["password"] == $_POST["VerifyPassword"])) {
-    //     $password = $_POST["password"];
-    //     if (strlen($_POST["password"]) <= '8') {
-    //     } elseif (!preg_match("#[0-9]+#", $password)) {
-    //         $errors['password'] = true;
-    //     } elseif (!preg_match("#[A-Z]+#", $password)) {
-    //         $errors['password'] = true;
-    //     } elseif (!preg_match("#[a-z]+#", $password)) {
-    //         $errors['password'] = true;
-    //     }
-    // } elseif (!empty($_POST["password"])) {
-    //     $VerifyPasswordErr = "Please Check You've Entered Or Confirmed Your Password!";
-    // } else {
-    //     $passwordErr = "Please enter password   ";
-    // }
-
-    // if ($password !== $_POST['VerifyPassword']) {
-    //     $errors['VerifyPassword'] = true;
-    // }
-
-
-    // if (count($errors) === 0) {
     $query = "INSERT INTO `library_users` (`id`, `username`, `password`, `name`, `email`) VALUES (NULL, ?, ?, ?, ?) ";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$username, password_hash($password, PASSWORD_DEFAULT), $name, $email]);
     header("Location: login.php");
     exit();
-    // }
 
 
 }

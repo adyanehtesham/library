@@ -1,5 +1,8 @@
 <?php
 
+// php script to check if a username already exists in the database
+// returns true if book exists, false if it does no
+
 include 'includes/library.php';
 $pdo = connectDB();
 

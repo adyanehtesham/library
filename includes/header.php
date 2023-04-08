@@ -5,10 +5,12 @@
 		<img src="./images/icons/SitReadingDoodle.svg" alt="Person Sitting and Reading" height="64" width="64" />
 		<h1><a href="./index.php">Bata Online</a></h1>
 	</div>
-	<!-- Nav that holds the links -->
+	<!-- toggle button for menu -->
 	<button id="nav-toggle" class="button">
 		Toggle Menu
 	</button>
+	<!-- Nav that holds the links -->
+	<!-- added id for javascript -->
 	<nav id="nav">
 		<ul>
 			<?php

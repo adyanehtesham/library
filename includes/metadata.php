@@ -6,5 +6,5 @@
 <title>
 	<?= $page_title ?>
 </title>
-<!-- Include javascript -->
+<!-- Include javascript for header, as it's in every page, I included in the metadata itself -->
 <script defer src="scripts/header.js"></script>

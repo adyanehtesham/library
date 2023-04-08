@@ -160,10 +160,12 @@ if (isset($_POST['submit'])) {
                         <label for="cover_image">Cover Image:</label>
                         <input type="file" name="cover_image" id="cover_image" />
                     </div>
+                    <span class="hidden">*Add a cover image</span>
                     <div>
                         <label for="book_file">Book File:</label>
                         <input type="file" name="book_file" id="book_file" />
                     </div>
+                    <span class="hidden">*Add a book file</span>
                 </div>
                 <div class="bookDetailInput">
                     <div>

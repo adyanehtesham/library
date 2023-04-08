@@ -1,21 +1,23 @@
-"use strict";
+// get the nav element
+const nav = document.getElementById("nav");
+// get the nav toggle button
+const navButton = document.getElementById("nav-toggle");
 
-// This block will run when the DOM is loaded (once elements exist), it's really only necessary as a IE 9 fallback for lack of support for defer
-window.addEventListener("DOMContentLoaded", () => {
-    const nav = document.getElementById("nav");
-    const navButton = document.getElementById("nav-toggle");
-    let hidden = true;
-    
-    nav.classList.add("hidden");
+// variable to keep track of the state of the nav
+let hidden = true;
 
-    navButton.addEventListener("click", () => {
-        if (hidden) {
-            nav.classList.remove("hidden");
-            hidden = false;
-        } else {
-            nav.classList.add("hidden");
-            hidden = true;
-        }
-    });
-    
+// hide the nav
+nav.classList.add("hidden");
+
+// add an event listener to the nav toggle button
+navButton.addEventListener("click", () => {
+    if (hidden) {
+        // if the nav is hidden, show it
+        nav.classList.remove("hidden");
+        hidden = false;
+    } else {
+        // if the nav is shown, hide it
+        nav.classList.add("hidden");
+        hidden = true;
+    }
 });

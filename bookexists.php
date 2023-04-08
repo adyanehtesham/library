@@ -1,4 +1,6 @@
 <?php
+// php script to check if a book already exists in the database
+// returns true if book exists, false if it does not
 
 include 'includes/library.php';
 $pdo = connectDB();
